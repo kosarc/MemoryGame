@@ -1,3 +1,5 @@
+import "./SingleCard.css";
+
 const SingleCard = ({ card, handleClick }) => {
   console.log(card.src);
   return (
