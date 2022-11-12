@@ -33,10 +33,18 @@ function App() {
   useEffect(() => {
     if (firstCard && secondCard) {
       if (firstCard.src === secondCard.src) {
-        console.log("match");
+        setCards((prevCards) => {
+          prevCards.map((card) => {
+            if (card.src === firstCard.src) {
+              return { ...card, match: true };
+            } else {
+              return card;
+            }
+          });
+        });
+
         resetChoise();
       } else {
-        console.log("do not match");
         resetChoise();
       }
     }
