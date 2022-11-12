@@ -5,12 +5,12 @@ import "./App.css";
 import SingleCard from "./SingleCard";
 
 const imageSrc = [
-  { src: "/img/helmet-1.png" },
-  { src: "/img/potion-1.png" },
-  { src: "/img/ring-1.png" },
-  { src: "/img/scroll-1.png" },
-  { src: "/img/shield-1.png" },
-  { src: "/img/sword-1.png" },
+  { src: "/img/helmet-1.png", match: false },
+  { src: "/img/potion-1.png", match: false },
+  { src: "/img/ring-1.png", match: false },
+  { src: "/img/scroll-1.png", match: false },
+  { src: "/img/shield-1.png", match: false },
+  { src: "/img/sword-1.png", match: false },
 ];
 
 function App() {
@@ -26,21 +26,27 @@ function App() {
     setCards(shuffledCards);
   };
 
-  const handleClick = (id) => {
-    setTurns((prevNum) => prevNum + 1);
-    return firstCard ? setSecondCard(id) : setFirstCard(id);
+  const handleClick = (card) => {
+    firstCard ? setSecondCard(card) : setFirstCard(card);
   };
 
   useEffect(() => {
     if (firstCard && secondCard) {
-      if (firstCard === secondCard) {
+      if (firstCard.src === secondCard.src) {
         console.log("match");
+        resetChoise();
       } else {
-        setFirstCard(false);
-        setSecondCard(false);
+        console.log("do not match");
+        resetChoise();
       }
     }
   }, [firstCard, secondCard]);
+
+  const resetChoise = () => {
+    setTurns((prevNum) => prevNum + 1);
+    setFirstCard(false);
+    setSecondCard(false);
+  };
 
   return (
     <div className="App">
