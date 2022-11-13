@@ -34,7 +34,7 @@ function App() {
     if (firstCard && secondCard) {
       if (firstCard.src === secondCard.src) {
         setCards((prevCards) => {
-          prevCards.map((card) => {
+          return prevCards.map((card) => {
             if (card.src === firstCard.src) {
               return { ...card, match: true };
             } else {
@@ -56,17 +56,26 @@ function App() {
     setSecondCard(false);
   };
 
+  console.log(cards);
+
   return (
     <div className="App">
       <h1>Magic Match</h1>
       <button onClick={shuffleCards}>New Game</button>
-      <div className="card-desk">
-        {cards.map((val) => {
-          return (
-            <SingleCard key={val.id} card={val} handleClick={handleClick} />
-          );
-        })}
-      </div>
+      {cards && (
+        <div className="card-desk">
+          {cards.map((val) => {
+            return (
+              <SingleCard
+                key={val.id}
+                card={val}
+                handleClick={handleClick}
+                flipped={val === firstCard || val === secondCard || val.match}
+              />
+            );
+          })}
+        </div>
+      )}
       {turns}
     </div>
   );
