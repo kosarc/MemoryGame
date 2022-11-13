@@ -45,7 +45,9 @@ function App() {
 
         resetChoise();
       } else {
-        resetChoise();
+        setTimeout(() => {
+          resetChoise();
+        }, 1000);
       }
     }
   }, [firstCard, secondCard]);

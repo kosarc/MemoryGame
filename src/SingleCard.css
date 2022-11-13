@@ -10,9 +10,20 @@
 }
 
 .SingleCard .front-card {
-  transform: rotateY(90deg);
   position: absolute;
+  transform: rotateY(90deg);
+  transition: all ease-in 0.2s;
 }
 .flipped .front-card {
   transform: rotateY(0deg);
+  transition-delay: 0.2s;
+}
+
+.SingleCard .back-card {
+  transition: all ease-in 0.2s;
+  transition-delay: 0.2s;
+}
+.flipped .back-card {
+  transform: rotateY(90deg);
+  transition-delay: 0s;
 }
