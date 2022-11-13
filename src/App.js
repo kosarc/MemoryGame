@@ -14,16 +14,18 @@ const imageSrc = [
 ];
 
 function App() {
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useState(null);
   const [turns, setTurns] = useState(0);
   const [firstCard, setFirstCard] = useState(false);
   const [secondCard, setSecondCard] = useState(false);
+  const [clickable, setClickable] = useState(true);
 
   const shuffleCards = () => {
     const shuffledCards = [...imageSrc, ...imageSrc]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
     setCards(shuffledCards);
+    setTurns(0);
   };
 
   const handleClick = (card) => {
@@ -32,6 +34,7 @@ function App() {
 
   useEffect(() => {
     if (firstCard && secondCard) {
+      setClickable(false);
       if (firstCard.src === secondCard.src) {
         setCards((prevCards) => {
           return prevCards.map((card) => {
@@ -56,6 +59,7 @@ function App() {
     setTurns((prevNum) => prevNum + 1);
     setFirstCard(false);
     setSecondCard(false);
+    setClickable(true);
   };
 
   console.log(cards);
@@ -73,12 +77,17 @@ function App() {
                 card={val}
                 handleClick={handleClick}
                 flipped={val === firstCard || val === secondCard || val.match}
+                clickable={clickable}
               />
             );
           })}
         </div>
       )}
-      {turns}
+      {cards && (
+        <div className="turns">
+          Turns: <span className="turns-number">{turns}</span>
+        </div>
+      )}
     </div>
   );
 }
