@@ -5,12 +5,12 @@ import "./App.css";
 import SingleCard from "./SingleCard";
 
 const imageSrc = [
-  { src: "/img/helmet-1.png", match: false },
-  { src: "/img/potion-1.png", match: false },
-  { src: "/img/ring-1.png", match: false },
-  { src: "/img/scroll-1.png", match: false },
-  { src: "/img/shield-1.png", match: false },
-  { src: "/img/sword-1.png", match: false },
+  { src: "/img/1.png", match: false },
+  { src: "/img/2.png", match: false },
+  { src: "/img/3.png", match: false },
+  { src: "/img/4.png", match: false },
+  { src: "/img/5.png", match: false },
+  { src: "/img/6.png", match: false },
 ];
 
 function App() {
