@@ -24,6 +24,7 @@ function App() {
     const shuffledCards = [...imageSrc, ...imageSrc]
       .sort(() => Math.random() - 0.5)
       .map((card) => ({ ...card, id: Math.random() }));
+
     setCards(shuffledCards);
     setTurns(0);
   };
@@ -70,10 +71,10 @@ function App() {
       <button onClick={shuffleCards}>New Game</button>
       {cards && (
         <div className="card-desk">
-          {cards.map((val) => {
+          {cards.map((val, index) => {
             return (
               <SingleCard
-                key={val.id}
+                key={index}
                 card={val}
                 handleClick={handleClick}
                 flipped={val === firstCard || val === secondCard || val.match}
